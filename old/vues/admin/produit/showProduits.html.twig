@@ -1,0 +1,54 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <a href="{#{ path('produit_addProduit') }#}" class="btn btn-primary m-1 p-1"> Ajouter un produit </a>
+            <a href="{{ path('admin_produit_add') }}" class="btn btn-primary m-1 p-1"> Ajouter un produit </a>
+        </div>
+        <div>
+            <table class="table">
+                <caption>Recapitulatifs des produits</caption>
+                <thead class="thead-dark">
+                <tr><th>nom</th><th>prix</th><th>stock</th><th>date Lancement</th><th>photo</th><th>type</th>
+                    <th>opération</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if produits is not empty %}
+                    {% for produit in produits  %}
+                        <tr>
+                            <td>{{produit.nom}} {# produit.getNom()#} </td>
+
+                            <td>{{produit.prix}} €</td>
+                            <td>{{produit.stock| default('pas de stock')}}</td>
+                            <td>{%  if produit.dateLancement is not null %}
+                            {{produit.dateLancement | date('d/m/Y') }} {% else %}pas de date
+                            {% endif %}
+                            </td>
+                            <td>{%  if produit.photo is not empty %}
+                                <img style="width:40px;height:40px"  src="{{asset('images/')}}{{produit.photo}}"  alt="image du produit" >
+                                {% else %} <img style="width:40px;height:40px"  src="{{asset('images/')}}no_photo.jpeg"  alt="image du produit" >
+                                {% endif %}
+                            </td>
+                            <td>{{produit.typeProduit.libelle | default('pas de type')}}</td>
+                            <td>
+                                <a href="{#{ path('produit_detail', {id: produit.id}) }#}" class="btn btn-primary">détails</a>
+                                <a href="{{ path('admin_produit_edit', {id: produit.id}) }}" class="btn btn-primary">modifier</a>{# {{ path('produit_editProduit', {id: produit.id}) }}#}
+{#                                <form action="{ path('produit_deleteProduit') }" method="POST" style="display:inline">#}
+                                <form action="{{ path('admin_produit_delete') }}" method="POST" style="display:inline">
+                                    <input type="hidden" name="token" value="{{ csrf_token('produit_delete') }}"> {# {{ csrf_token('produit_delete') }}#}
+                                    <input type="hidden" name="produit_id" value="{{ produit.id }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-warning" onclick="return confirm('Confirmation Suppression ?')">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr class="table-warning"><td>Pas de Produit</td></tr>
+                {% endif %}
+                <tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

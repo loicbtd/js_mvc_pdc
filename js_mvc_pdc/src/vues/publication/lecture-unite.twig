@@ -1,0 +1,14 @@
+{% extends "index.twig" %}
+
+{% block root %}
+  <h1>Articles</h1>
+  <a href="/postArticle"> Poster un article </a>
+  {% for article in articles %}
+  <div class="article"><h2>{{article.titre}} </h2>
+    {% if article.idProfil == user %} <a href="/editArticle/{{article.idArticle}}">Modifier</a> <a href="/deleteArticle/{{article.idArticle}}">Supprimer</a> {% endif %}
+    <i>publié le {{article.datePubli|date("d/m/Y")}} par <b>{% for auteur in auteurs %} {% if auteur.id == article.idProfil %} {{auteur.email}} {% endif %}{% endfor %}</b></i>
+    <p>{{article.contenu}}  
+  </div>
+  {% endfor %}
+{% endblock %}
+

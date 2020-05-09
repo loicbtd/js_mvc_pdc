@@ -1,0 +1,86 @@
+{
+  "name": "JS_MVC_PDC",
+  "version": "1.0.0",
+  "description": "Preuve de Concept CRUD en JS",
+  "main": "build/App.js",
+  "scripts": {
+    "start": "npm run prod",
+    "prod": "NODE_ENV=production npm-run-all build serve",
+    "dev": "nodemon",
+    "serve": "node ./build/App.js",
+    "build": "npm-run-all clean transpile",
+    "clean": "rimraf ./build",
+    "transpile": "babel ./src --out-dir ./build --copy-files"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/loicbtd/iutwit.git"
+  },
+  "author": "Loic BERTRAND",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://gitlab.com/loicbtd/iutwit/issues"
+  },
+  "homepage": "https://gitlab.com/loicbtd/iutwit",
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.6",
+    "app-root-path": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-dom": "^5.13.2",
+    "express-session": "^1.17.1",
+    "graphql-yoga": "^1.18.3",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "twig": "^1.15.1",
+    "twig-loader": "^0.5.3",
+    "twing": "^4.0.6"
+  },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^4.0.0",
+    "browser-sync": "^2.26.7",
+    "concurrently": "^5.2.0",
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "module-resolver",
+        {
+          "root": [
+            "./src"
+          ]
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
+    ]
+  },
+  "nodemonConfig": {
+    "exec": "NODE_ENV=development npm-run-all build serve",
+    "watch": [
+      "src/*"
+    ],
+    "ignore": [
+      "build/*"
+    ],
+    "ext": "js,twig"
+  }
+}
