@@ -8,16 +8,16 @@
 {% from "activites/publication.twig" import publication %}
 
 {% block racine %}
-  {% if proprietes.navigation %}
-    {{ navigation() }}
+  {% if proprietes.session.utilisateur %}
+    {{ navigation(proprietes) }}
   {% endif %}
   {% if proprietes.vue == "/connexion" %}
-    {{ connexion() }}
+    {{ connexion(proprietes) }}
   {% elseif proprietes.vue == "/enregistrement" %}
-    {{ enregistrement() }}
+    {{ enregistrement(proprietes) }}
   {% elseif proprietes.vue == "/fil" %}
-    {{ fil() }}
+    {{ fil(proprietes) }}
   {% elseif proprietes.vue == "/publication" %}
-    {{ publication() }}
+    {{ publication(proprietes) }}
   {% endif %}
 {% endblock %}

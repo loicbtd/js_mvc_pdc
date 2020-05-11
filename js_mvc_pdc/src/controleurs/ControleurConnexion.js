@@ -1,13 +1,17 @@
+import { rendre } from 'ressources/configurations/twing.conf'
 class ControleurConnexion {
-  naviguer(route, reponse) {
+  naviguer(requete, reponse) {
     rendre(reponse, {
-      vue: route,
-      navigation: false,
+      vue: requete.originalUrl,
+      session: requete.session,
     })
   }
 
-  controler() {
-    
+  controler(requete, reponse) {
+    requete.session.utilisateur = {
+      pseudonyme: requete.body.pseudonyme
+    }
+    reponse.redirect('/')
   }
 }
 

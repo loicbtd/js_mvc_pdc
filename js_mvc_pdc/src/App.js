@@ -10,7 +10,7 @@ class App {
     this.demarrer = this.demarrer.bind(this)
   }
 
-  demarrer() {
+  demarrer(port) {
     // Définition de la route de navigation
     app.route('/*').get(this.naviguer)
 
@@ -18,33 +18,37 @@ class App {
     app.route('/*').post(this.controler)
 
     // Démarrage du serveur
-    app.listen(process.env.PORT, () => {
-      console.log('Serveur en fonction à http://127.0.0.1:' + process.env.PORT)
+    app.listen(port, () => {
+      console.log('Serveur en fonction à http://127.0.0.1:' + port)
     })
   }
 
   naviguer(requete, reponse) {
-    const route = requete.originalUrl
+    let route = requete.originalUrl
 
-    // if (!requete.session.utilisateur) {
-    //   if (route === '/enregistrement') {
-    //     const controleur = new ControleurEnregistrement()
-    //     controleur.afficher(requete, reponse)
-    //   }
-    //   else {
-    //     const controleur = new ControleurConnexion()
-    //     controleur.afficher(requete, reponse)
-    //   }
-    // }
+    if (!requete.session.utilisateur && route !== '/enregistrement') {
+      route = '/connexion'
+    }
 
-    if (route === '/fil') {
+    if (route === '/enregistrement') {
+      const controleur = new ControleurEnregistrement()
+      controleur.naviguer(requete, reponse)
+    }
+    else if (route === '/connexion') {
+      const controleur = new ControleurConnexion()
+      controleur.naviguer(requete, reponse)
+    }
+    else if (route === '/fil') {
       const controleur = new ControleurFil()
-      controleur.naviguer(route, reponse)
-    } else if (route === '/fil/publier') {
+      controleur.naviguer(requete, reponse)
+    }
+    else if (route === '/fil/publier') {
       reponse.end()
-    } else if (route.match(/^\/fil\/modifier\/.*/)) {
+    }
+    else if (route.match(/^\/fil\/modifier\/.*/)) {
       reponse.end()
-    } else {
+    }
+    else {
       reponse.redirect('/fil')
     }
     // requete.session.test = (requete.session.test || 0) + 1
@@ -52,26 +56,45 @@ class App {
   }
 
   controler(requete, reponse) {
-    if (!requete.session.utilisateur) {
-      reponse.redirect('/')
+    let route = requete.originalUrl
+    
+    if (
+      !requete.session.utilisateur
+        && route !== '/enregistrement'
+        && route !== '/connexion'
+    ) {
+      reponse.redirect('/connexion')
+      return
     }
 
-    const route = requete.originalUrl
-
-    if (route === '/fil') {
-      const controleur = new ControleurFil()
-      controleur.afficher(reponse)
-    } else if (route === '/fil/publier') {
+    if (route === '/connexion') {
+      const controleur = new ControleurConnexion()
+      controleur.controler(requete, reponse)
+    }
+    else if (route === '/enregistrement') {
       reponse.end()
-    } else if (
-      route.match(/^\/fil\/modifier\/.*/)
-    ) {
+    }
+    else if (route === '/fil') {
       reponse.end()
-    } else {
+    }
+    else if (route === '/fil/publier') {
+      reponse.end()
+    }
+    else if (route.match(/^\/fil\/modifier\/.*/)) {
+      reponse.end()
+    }
+    else {
       reponse.redirect('/fil')
     }
   }
 }
 
-const application = new App()
-application.demarrer()
+export default App
+
+if (
+  process.env.NODE_ENV === 'production' ||
+  process.env.NODE_ENV === 'development'
+) {
+  const application = new App()
+  application.demarrer(process.env.PORT)
+}

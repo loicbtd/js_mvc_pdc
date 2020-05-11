@@ -18,7 +18,7 @@ const twing = new TwingEnvironment(chargeur, {
 })
 
 
-const rendre = (reponse, proprietes) => {  
+const rendre = (reponse, proprietes) => {
   twing
     .render('app.twig', {
       proprietes: proprietes

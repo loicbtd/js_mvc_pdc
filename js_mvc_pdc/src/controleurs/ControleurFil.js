@@ -1,10 +1,17 @@
+import AccesseurPublication from 'donnees/AccesseurPublication'
 import { rendre } from 'ressources/configurations/twing.conf'
 
 class ControleurFil {
-  naviguer(route, reponse) {
-    rendre(reponse, {
-      vue: route,
-      navigation: true
+  constructor() {
+    this.accesseurPublication = new AccesseurPublication()
+    this.naviguer = this.naviguer.bind(this)
+  }
+
+  naviguer(requete, reponse) {
+     rendre(reponse, {
+      vue: requete.originalUrl,
+      session: requete.session,
+      publications: this.accesseurPublication.recupererListe()
     })
   }
 }
