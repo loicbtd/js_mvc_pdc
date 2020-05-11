@@ -27,6 +27,7 @@ class App {
     let route = requete.originalUrl
 
     if (!requete.session.utilisateur && route !== '/enregistrement') {
+      requete.originalUrl = '/connexion'
       route = '/connexion'
     }
 
