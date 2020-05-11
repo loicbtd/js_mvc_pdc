@@ -1,61 +1,77 @@
-import { TwingEnvironment, TwingLoaderFilesystem } from 'twing'
+import 'ressources/configurations/dotenv.conf'
 
-import ControleurAccueil from 'controleurs/ControleurAccueil'
-import ControleurEvenement from 'controleurs/ControleurEvenement'
-import ControleurPublication from 'controleurs/ControleurPublication'
-import dotenv from 'dotenv'
-import express from 'express'
-import session from 'express-session'
+import ControleurConnexion from 'controleurs/ControleurConnexion'
+import ControleurEnregistrement from 'controleurs/ControleurEnregistrement'
+import ControleurFil from 'controleurs/ControleurFil'
+import app from 'ressources/configurations/express.conf'
 
-// Chargement du fichier .env
-dotenv.config()
+class App {
+  constructor() {
+    this.demarrer = this.demarrer.bind(this)
+  }
 
-// Instanciation et configuration des dépendances externes
-const app = express()
-const chargeur = new TwingLoaderFilesystem(__dirname + '/vues')
-const twing = new TwingEnvironment(chargeur, {
-  debug: false,
-  charset: 'utf-8',
-  cache: false,
-  auto_reload: false,
-  strict_variables: false,
-  autoescape: false,
-  optimizations: 0,
-  source_map: false,
-})
-app.use(
-  session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-  })
-)
+  demarrer() {
+    // Définition de la route de navigation
+    app.route('/*').get(this.naviguer)
 
-// Instanciation des controleurs
-const controleurEvenement = new ControleurEvenement()
-const controleurAccueil = new ControleurAccueil()
-const controleurPublication = new ControleurPublication()
+    // Définition de la route de contrôle
+    app.route('/*').post(this.controler)
 
-// Définition du gestionnaire d'évènements
-app.route('/').post((requete, reponse) => {
-  controleurEvenement.gerer(requete, reponse)
-})
+    // Démarrage du serveur
+    app.listen(process.env.PORT, () => {
+      console.log('Serveur en fonction à http://127.0.0.1:' + process.env.PORT)
+    })
+  }
 
-// Définition des vues
-app.route('/').get((requete, reponse) => {
-  controleurAccueil.rendre(twing, reponse)
-})
-app.route('/publication/creation').get((requete, reponse) => {
-  controleurPublication.creer(twing, reponse)
-})
-app.route('/publication/lecture').get((requete, reponse) => {
-  controleurPublication.lireListe(twing, reponse)
-})
-app.route('/publication/modification/:id').get((requete, reponse) => {
-  controleurPublication.modifier(twing, reponse, requete.params.id)
-})
+  naviguer(requete, reponse) {
+    const route = requete.originalUrl
 
-// Démarrage du serveur
-app.listen(process.env.PORT, () => {
-  console.log('Serveur en fonction à http://127.0.0.1:' + process.env.PORT)
-})
+    // if (!requete.session.utilisateur) {
+    //   if (route === '/enregistrement') {
+    //     const controleur = new ControleurEnregistrement()
+    //     controleur.afficher(requete, reponse)
+    //   }
+    //   else {
+    //     const controleur = new ControleurConnexion()
+    //     controleur.afficher(requete, reponse)
+    //   }
+    // }
+
+    if (route === '/fil') {
+      const controleur = new ControleurFil()
+      controleur.naviguer(route, reponse)
+    } else if (route === '/fil/publier') {
+      reponse.end()
+    } else if (route.match(/^\/fil\/modifier\/.*/)) {
+      reponse.end()
+    } else {
+      reponse.redirect('/fil')
+    }
+    // requete.session.test = (requete.session.test || 0) + 1
+    // reponse.end(requete.originalUrl + '')
+  }
+
+  controler(requete, reponse) {
+    if (!requete.session.utilisateur) {
+      reponse.redirect('/')
+    }
+
+    const route = requete.originalUrl
+
+    if (route === '/fil') {
+      const controleur = new ControleurFil()
+      controleur.afficher(reponse)
+    } else if (route === '/fil/publier') {
+      reponse.end()
+    } else if (
+      route.match(/^\/fil\/modifier\/.*/)
+    ) {
+      reponse.end()
+    } else {
+      reponse.redirect('/fil')
+    }
+  }
+}
+
+const application = new App()
+application.demarrer()

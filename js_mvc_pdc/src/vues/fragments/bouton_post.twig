@@ -1,0 +1,6 @@
+{% macro vue_bouton_(route, cle, valeur, etiquette, classe) %}
+<form action="{{ route }}" method="post">
+  <input type="hidden" name="{{ cle }}" value="{{ valeur }}">
+  <div class="{{ classe }}" type="submit">{{ etiquette }}</div>
+</form>
+{% endmacro %}

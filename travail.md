@@ -1,9 +1,17 @@
 # Devlog - Historique du travail effectué
 
-## 09/05/2020
+
+## 11/05/2020
+
+* Définition de la logique de navigation complete
+* Définition de la logique de contrôle des évènements
+* Mise en place des cookies
+
+
+## 10/05/2020
 
 * Mise en place de la base de données
-* Définition  
+* Définition de la navigation avec twig
 
 
 ## 08/05/2020

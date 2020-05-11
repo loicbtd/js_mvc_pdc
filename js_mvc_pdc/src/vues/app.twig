@@ -1,0 +1,23 @@
+{% extends "index.twig" %}
+
+{% from "fragments/navigation.twig" import navigation %}
+
+{% from "activites/connexion.twig" import connexion %}
+{% from "activites/enregistrement.twig" import enregistrement %}
+{% from "activites/fil.twig" import fil %}
+{% from "activites/publication.twig" import publication %}
+
+{% block racine %}
+  {% if proprietes.navigation %}
+    {{ navigation() }}
+  {% endif %}
+  {% if proprietes.vue == "/connexion" %}
+    {{ connexion() }}
+  {% elseif proprietes.vue == "/enregistrement" %}
+    {{ enregistrement() }}
+  {% elseif proprietes.vue == "/fil" %}
+    {{ fil() }}
+  {% elseif proprietes.vue == "/publication" %}
+    {{ publication() }}
+  {% endif %}
+{% endblock %}
