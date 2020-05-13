@@ -7,10 +7,6 @@ import ControleurFil from 'controleurs/ControleurFil'
 import app from 'ressources/configurations/express.conf'
 
 class App {
-  constructor() {
-    this.demarrer = this.demarrer.bind(this)
-  }
-
   demarrer(port) {
     // Définition de la route de navigation
     app.route('/*').get(this.naviguer)
