@@ -1,6 +1,7 @@
-{% from "fragments/bouton_post.twig" import bouton_post %}
-
 {% macro navigation(proprietes) %}
+
+{% from "fragments/bouton_form.twig" import bouton_form %}
+
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="/">JavaScript MVC</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barre-navigation-contenu" aria-controls="barre-navigation-contenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +14,8 @@
       </li>
     </ul>
     <div class="text-light m-1">{{ proprietes.session.utilisateur.pseudonyme }}</div>
-    {# {{ bouton_post("/connexion", "action", "deconnexion", "Deconnexion", "btn btn-sm btn-danger m-1" ) }} #}
+    {{ bouton_form("/deconnexion", "Deconnexion", "btn btn-sm btn-danger m-1", []) }}
   </div>
 </nav>
+
 {% endmacro %}

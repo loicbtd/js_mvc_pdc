@@ -8,6 +8,7 @@
 {% from "activites/publication.twig" import publication %}
 
 {% block racine %}
+
   {% if proprietes.session.utilisateur %}
     {{ navigation(proprietes) }}
   {% endif %}
@@ -20,4 +21,5 @@
   {% elseif proprietes.vue == "/publication" %}
     {{ publication(proprietes) }}
   {% endif %}
+
 {% endblock %}

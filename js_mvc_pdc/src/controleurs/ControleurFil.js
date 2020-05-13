@@ -4,7 +4,6 @@ import { rendre } from 'ressources/configurations/twing.conf'
 class ControleurFil {
   constructor() {
     this.accesseurPublication = new AccesseurPublication()
-    this.naviguer = this.naviguer.bind(this)
   }
 
   naviguer(requete, reponse) {

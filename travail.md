@@ -1,5 +1,9 @@
 # Devlog - Historique du travail effectué
 
+## 13/05/2020
+
+* Gestion de la memoire session
+
 
 ## 11/05/2020
 

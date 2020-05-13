@@ -1,0 +1,10 @@
+{% macro bouton_form(route, etiquette, classe, donnees) %}
+
+<form action="{{ route }}" method="post">
+  {% for donnee in donnees %}
+  <input type="hidden" name="{{ donnee.cle }}" value="{{ donnee.valeur }}">
+  {% endfor %}
+  <button class="{{ classe }}" type="submit">{{ etiquette }}</button>
+</form>
+
+{% endmacro %}

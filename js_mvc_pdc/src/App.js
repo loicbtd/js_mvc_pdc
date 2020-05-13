@@ -1,6 +1,7 @@
 import 'ressources/configurations/dotenv.conf'
 
 import ControleurConnexion from 'controleurs/ControleurConnexion'
+import ControleurDeconnexion from 'controleurs/ControleurDeconnexion'
 import ControleurEnregistrement from 'controleurs/ControleurEnregistrement'
 import ControleurFil from 'controleurs/ControleurFil'
 import app from 'ressources/configurations/express.conf'
@@ -70,6 +71,10 @@ class App {
 
     if (route === '/connexion') {
       const controleur = new ControleurConnexion()
+      controleur.controler(requete, reponse)
+    }
+    else if (route === '/deconnexion') {
+      const controleur = new ControleurDeconnexion()
       controleur.controler(requete, reponse)
     }
     else if (route === '/enregistrement') {

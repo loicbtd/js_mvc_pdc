@@ -9,7 +9,7 @@ class ControleurConnexion {
 
   controler(requete, reponse) {
     requete.session.utilisateur = {
-      pseudonyme: requete.body.pseudonyme
+      pseudonyme: requete.body.pseudonyme,
     }
     reponse.redirect('/')
   }

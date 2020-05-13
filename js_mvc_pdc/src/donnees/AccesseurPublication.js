@@ -23,7 +23,6 @@ class AccesseurPublication {
         new Utilisateur(1, 'demo', 'demo')
       ),
     ]
-    this.recupererListe = this.recupererListe.bind(this)
   }
 
   recupererListe() {
