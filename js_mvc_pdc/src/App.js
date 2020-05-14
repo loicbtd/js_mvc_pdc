@@ -4,16 +4,15 @@ import ControleurConnexion from 'controleurs/ControleurConnexion'
 import ControleurDeconnexion from 'controleurs/ControleurDeconnexion'
 import ControleurEnregistrement from 'controleurs/ControleurEnregistrement'
 import ControleurFil from 'controleurs/ControleurFil'
+import ControleurFilPublier from 'controleurs/ControleurFilPublier'
 import app from 'ressources/configurations/express.conf'
 
 class App {
   demarrer(port) {
     // Définition de la route de navigation
     app.route('/*').get(this.naviguer)
-
     // Définition de la route de contrôle
     app.route('/*').post(this.controler)
-
     // Démarrage du serveur
     app.listen(port, () => {
       console.log('Serveur en fonction à http://127.0.0.1:' + port)
@@ -41,7 +40,8 @@ class App {
       controleur.naviguer(requete, reponse)
     }
     else if (route === '/fil/publier') {
-      reponse.end()
+      const controleur = new ControleurFilPublier()
+      controleur.naviguer(requete, reponse)
     }
     else if (route.match(/^\/fil\/modifier\/.*/)) {
       reponse.end()

@@ -1,4 +1,4 @@
-{% macro publication() %}
+{% macro fil_publier(proprietes) %}
 <div class="container">
   <div class="row">
     <div class="col-12  my-2">
@@ -13,6 +13,7 @@
         </div>
         <input type="hidden" name="action" value="creer-article">
         <button class="btn btn-primary" type="submit">Publier</button>
+        <a class="btn btn-secondary" href="/fil">Retour</a>
       </form>
     </div>
   </div>

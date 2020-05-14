@@ -1,21 +1,41 @@
-{% macro connexion() %}
+{% macro connexion(proprietes) %}
 <div class="container justify-content-center" style="height: 100vh; display: flex; align-items: center;">
   <div class="row">
     <div class="col-12 text-center">
-      <h1>Javascript MVC</h1>
+      <h1>Connexion</h1>
     </div>
     <div class="col-12 my-2">
       <form action="/connexion" method="post">
-        <div class="form-group">
-          <label for="pseudonyme">Pseudonyme</label>
-          <input type="text" class="form-control" name="pseudonyme" placeholder="Pseudonyme" />
+        <div class="form-row">
+          <div class="col-md-12 my-1">
+            <label for="pseudonyme">Pseudonyme</label>
+            <input 
+              type="text" 
+              class="form-control {% if proprietes.erreurs.pseudonyme %}is-invalid{% endif %}" 
+              name="pseudonyme" 
+              placeholder="Pseudonyme"
+              {% if proprietes.saisies.pseudonyme %}value="{{ proprietes.saisies.pseudonyme }}"{% endif %}
+            />
+            {% if proprietes.erreurs.pseudonyme %}
+            <div class="invalid-feedback">{{ proprietes.erreurs.pseudonyme.retroaction }}</div>
+            {% endif %}
+          </div>
         </div>
-        <div class="form-group">
-          <label for="mot_de_passe">Mot de passe</label>
-          <input type="password" class="form-control" name="mot_de_passe" placeholder="Mot de passe"></input>
+        <div class="form-row">
+          <div class="col-md-12 my-1">
+            <label for="mot_de_passe">Mot de passe</label>
+            <input 
+              type="password" 
+              class="form-control {% if proprietes.erreurs.mot_de_passe %}is-invalid{% endif %}" 
+              name="mot_de_passe" 
+              placeholder="Mot de passe" 
+            />
+            {% if proprietes.erreurs.mot_de_passe %}
+            <div class="invalid-feedback">{{ proprietes.erreurs.mot_de_passe.retroaction }}</div>
+            {% endif %}
+          </div>
         </div>
-        <input type="hidden" name="action" value="session-connexion">
-        <button class="btn btn-primary btn-block" type="submit">Connexion</button>
+        <button class="btn btn-primary btn-block my-2" type="submit">Connexion</button>
       </form>
     </div>
   </div>

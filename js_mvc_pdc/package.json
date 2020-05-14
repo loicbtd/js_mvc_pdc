@@ -26,6 +26,7 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "app-root-path": "^3.0.0",
     "body-parser": "^1.19.0",
@@ -37,6 +38,7 @@
     "express-dom": "^5.13.2",
     "express-session": "^1.17.1",
     "graphql-yoga": "^1.18.3",
+    "mysql2": "^2.1.0",
     "npm-run-all": "^4.1.5",
     "path": "^0.12.7",
     "request": "^2.88.2",
@@ -76,6 +78,10 @@
         {
           "loose": true
         }
+      ],
+      [
+        "@babel/plugin-transform-runtime",
+        {}
       ]
     ]
   },

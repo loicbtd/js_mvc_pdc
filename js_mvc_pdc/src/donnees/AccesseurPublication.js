@@ -1,32 +1,51 @@
+import AccesseurUtilisateur from 'donnees/AccesseurUtilisateur'
+import BaseDeDonnees from 'donnees/BaseDeDonnees'
 import Publication from 'modeles/Publication'
-import Utilisateur from 'modeles/Utilisateur'
 
 class AccesseurPublication {
+  
+  #baseDeDonnees
+  #accesseurUtilisateur
+  
   constructor() {
-    this.publications = [
+    this.#accesseurUtilisateur = new AccesseurUtilisateur()
+  }
+
+  recupererItemParId(id) {
+    const liste = this.mockListe()
+    for (let position = 0; position < liste.length; position++) {
+      if (liste[position].id_publication === id) {
+        return liste[position]
+      }
+    }
+    return null
+  }
+
+  recupererListeComplete() {
+    return this.mockListe()
+  }
+
+  mockListe() {
+    return [
       new Publication(
         1,
         'titre1',
         'contenu1',
-        new Utilisateur(1, 'demo', 'demo')
+        this.#accesseurUtilisateur.recupererItemParId(1)
       ),
       new Publication(
         2,
         'titre2',
         'contenu2',
-        new Utilisateur(1, 'demo', 'demo')
+        this.#accesseurUtilisateur.recupererItemParId(2)
       ),
       new Publication(
         3,
         'titre3',
         'contenu3',
-        new Utilisateur(1, 'demo', 'demo')
+        this.#accesseurUtilisateur.recupererItemParId(3)
       ),
     ]
-  }
-
-  recupererListe() {
-    return this.publications
   }
 }
 

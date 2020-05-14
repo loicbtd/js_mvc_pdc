@@ -5,7 +5,7 @@
 {% from "activites/connexion.twig" import connexion %}
 {% from "activites/enregistrement.twig" import enregistrement %}
 {% from "activites/fil.twig" import fil %}
-{% from "activites/publication.twig" import publication %}
+{% from "activites/fil_publier.twig" import fil_publier %}
 
 {% block racine %}
 
@@ -18,8 +18,7 @@
     {{ enregistrement(proprietes) }}
   {% elseif proprietes.vue == "/fil" %}
     {{ fil(proprietes) }}
-  {% elseif proprietes.vue == "/publication" %}
-    {{ publication(proprietes) }}
+  {% elseif proprietes.vue == "/fil/publier" %}
+    {{ fil_publier(proprietes) }}
   {% endif %}
-
 {% endblock %}

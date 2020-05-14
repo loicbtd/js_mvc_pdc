@@ -2,10 +2,10 @@
 <div class="container">
   <div class="row">
     <div class="col-12 text-center my-2">
-      <h1 class="h4">Fil d'actualité</h1>
+      <h1 class="h4">Fil</h1>
     </div>
     <div class="col-12 text-center my-2">
-      <a href="/publication/creation" class="btn btn-primary btn-block">Publier</a>
+      <a href="/fil/publier" class="btn btn-primary btn-block">Publier</a>
     </div>
     {% for publication in proprietes.publications %}
     <div class="col-12 my-2">
@@ -14,8 +14,10 @@
           <h5 class="card-title">{{publication.titre}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">De {{publication.utilisateur.pseudonyme}}</h6>
           <p class="card-text">{{publication.contenu}}</p>
+          {% if publication.droits.ecriture %}
           <a href="/publication/modification/{{publication.id_publication}}" class="btn btn-sm m-1 btn-outline-primary">Éditer</a>
           <a href="/publication/suppression/{{publication.id_publication}}" class='btn btn-sm m-1 btn-outline-danger'>Effacer</a>
+          {% endif %}
         </div>
       </div>
     </div>

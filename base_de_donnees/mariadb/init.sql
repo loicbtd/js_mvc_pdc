@@ -10,6 +10,7 @@ CREATE TABLE utilisateur(
   id_utilisateur int auto_increment,
   pseudonyme varchar(25),
   mot_de_passe varchar(25),
+  jeton text,
   PRIMARY KEY(id_utilisateur)
 );
 
@@ -25,9 +26,9 @@ CREATE TABLE publication(
     ON DELETE CASCADE
 );
 
-INSERT INTO utilisateur (id_utilisateur, pseudonyme, mot_de_passe) VALUES (1, 'demo', 'demo');
-INSERT INTO utilisateur (id_utilisateur, pseudonyme, mot_de_passe) VALUES (2, 'demo2', 'demo2');
-INSERT INTO utilisateur (id_utilisateur, pseudonyme, mot_de_passe) VALUES (3, 'demo3', 'demo3');
+INSERT INTO utilisateur (id_utilisateur, pseudonyme, mot_de_passe, jeton) VALUES (1, 'demo', 'demo', '1234');
+INSERT INTO utilisateur (id_utilisateur, pseudonyme, mot_de_passe, jeton) VALUES (2, 'demo2', 'demo2', '1234');
+INSERT INTO utilisateur (id_utilisateur, pseudonyme, mot_de_passe, jeton) VALUES (3, 'demo3', 'demo3', '1234');
 
 INSERT INTO publication (titre, contenu, id_utilisateur) VALUES ('titre1', 'contenu1', 1);
 INSERT INTO publication (titre, contenu, id_utilisateur) VALUES ('titre2', 'contenu2', 1);

@@ -1,5 +1,3 @@
-import Utilisateur from 'modeles/Utilisateur'
-
 class Publication {
   static CLE_ID_PUBLICATION = 'id_publication'
   static CLE_TITRE = 'titre'
