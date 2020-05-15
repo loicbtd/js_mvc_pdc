@@ -1,5 +1,12 @@
 # Devlog - Historique du travail effectué
 
+
+## 15/05/2020
+
+* Restructuration du projet afin
+* Étude de tous les Middlewares disponibles pour Express
+
+
 ## 14/05/2020
 
 * Définition de la logique de gestion des erreurs et de leur rendus sur l'interface graphique utilisateur
