@@ -1,0 +1,10 @@
+{% macro erreur(proprietes) %}
+<div class="container justify-content-center" style="height: 100vh; display: flex; align-items: center;">
+  <div class="row">
+    <div class="col-12 my-2">
+      <h1>{{proprietes.erreur.message}}</h1>
+      <h2>{{proprietes.erreur.status}}</h2>
+      <pre>{{proprietes.erreur.stack}}</pre>
+  </div>
+</div>
+{% endmacro %}

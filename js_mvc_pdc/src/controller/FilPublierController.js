@@ -1,58 +1,51 @@
-import AccesseurPublication from 'Repositories/AccesseurPublication'
-import { rendre } from 'config/Twig.conf'
+import PublicationRepository from 'repository/PublicationRepository'
 
-class ControleurFilPublier {
+class FilPublierController {
   
-  #accesseurPublication
+  // naviguer(requete, reponse) {
+  //   rendre(reponse, {
+  //     vue: requete.originalUrl,
+  //     session: requete.session,
+  //   })
+  // }
 
-  constructor() {
-    this.#accesseurPublication = new AccesseurPublication()
-  }
+  // controler(requete, reponse) {
+  //   const saisies = {
+  //     titre: requete.body.titre,
+  //     contenu: requete.body.contenu,
+  //   }
+  //   let erreurs = {}
 
-  naviguer(requete, reponse) {
-    rendre(reponse, {
-      vue: requete.originalUrl,
-      session: requete.session,
-    })
-  }
+  //   if (!saisies.titre) {
+  //     erreurs.titre = {
+  //       retroaction: 'Merci de saisir un titre.',
+  //     }
+  //   }
+  //   if (!saisies.contenu) {
+  //     erreurs.contenu = {
+  //       retroaction: 'Merci de saisir le contenu de votre publication.',
+  //     }
+  //   }
+  //   if (Object.entries(erreurs).length > 0) {
+  //     this.rendreErreurs(reponse, requete, saisies, erreurs)
+  //     return
+  //   }
 
-  controler(requete, reponse) {
-    const saisies = {
-      titre: requete.body.titre,
-      contenu: requete.body.contenu,
-    }
-    let erreurs = {}
+  //   const accesseurPublication = new AccesseurPublication()
+  //   accesseurPublication.ajouterItem({
+  //     titre: saisies.titre,
+  //     contenu: saisies.contenu
+  //   }, requete.session.utilisateur)
+  // }
 
-    if (!saisies.titre) {
-      erreurs.titre = {
-        retroaction: 'Merci de saisir un titre.',
-      }
-    }
-    if (!saisies.contenu) {
-      erreurs.contenu = {
-        retroaction: 'Merci de saisir le contenu de votre publication.',
-      }
-    }
-    if (Object.entries(erreurs).length > 0) {
-      this.rendreErreurs(reponse, requete, saisies, erreurs)
-      return
-    }
-
-    const accesseurPublication = new AccesseurPublication()
-    accesseurPublication.ajouterItem({
-      titre: saisies.titre,
-      contenu: saisies.contenu
-    }, requete.session.utilisateur)
-  }
-
-  rendreErreurs(reponse, requete, saisies, erreurs) {
-    rendre(reponse, {
-      vue: requete.originalUrl,
-      session: requete.session,
-      saisies: saisies,
-      erreurs: erreurs,
-    })
-  }
+  // rendreErreurs(reponse, requete, saisies, erreurs) {
+  //   rendre(reponse, {
+  //     vue: requete.originalUrl,
+  //     session: requete.session,
+  //     saisies: saisies,
+  //     erreurs: erreurs,
+  //   })
+  // }
 }
 
-export default ControleurFilPublier
+export default FilPublierController

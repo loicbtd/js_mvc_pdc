@@ -1,6 +1,9 @@
+import { Strategy } from 'passport-local'
 import bodyParser from 'body-parser'
-import cookieSession from 'cookie-session'
+import cookieParser from 'cookie-parser'
 import express from 'express'
+import expressSession from 'express-session'
+import passport from 'passport'
 import path from 'path'
 
 const app = express()
@@ -10,8 +13,19 @@ app.set('view engine', 'twig')
 
 app.use(express.static(path.dirname(require.main.filename) + '/' + 'public'))
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
+app.use(cookieParser())
+
+app.use(expressSession({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+
+app.use(passport.session())
 
 export default app

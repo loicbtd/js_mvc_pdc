@@ -6,21 +6,30 @@ import EnregistrementRouter from 'routes/EnregistrementRouter'
 import FilRouter from 'routes/FilRouter'
 import IndexRouter from 'routes/IndexRouter'
 import app from 'config/Express'
-import httpError from 'http-error'
+import httpError from 'http-erro'
 
-app.use('/connexion', ConnexionRouter)
-app.use('/deconnexion', DeconnexionRouter)
-app.use('/enregistrement', EnregistrementRouter)
-app.use('/fil', FilRouter)
-app.use('/', IndexRouter)
+app.use((req, res, next) => {
+  if (!req.user) {
+    app.use('/connexion', ConnexionRouter)
+    app.use('/enregistrement', EnregistrementRouter)
+  }
+  else {
+    next()
+  }
+})
+
+// app.use('/deconnexion', DeconnexionRouter)
+// app.use('/fil', FilRouter)
+// app.use('/', IndexRouter)
 
 app.use((req, res, next) => { next(httpError(404)) })
 
 app.use((err, req, res, next) => {
-  res.locals.message = err.message
-  res.locals.error = process.env.NODE_ENV === 'development' ? err : {}
-  res.status(err.status || 500)
-  res.render('error')
+  res.render('app', {
+    proprietes: {
+      vue: 'erreur',
+      erreur: err
+  }})
 })
 
 app.set('port', process.env.PORT)

@@ -1,9 +1,22 @@
 # Devlog - Historique du travail effectué
 
 
+## 19/05/2020
+
+* Suite de la restructuration du projet 
+* Rencontre de problèmes d'imports à cause des entités typescript de typeorm
+
+
+## 18/05/2020
+
+* Étude des Middlewares d'express
+* Résolution du problème de compilation NestJS
+* Création d'un dockerfile + docker-compose projet nestjs
+
+
 ## 15/05/2020
 
-* Restructuration du projet afin
+* Restructuration du projet en repositoy/entity/routes
 * Étude de tous les Middlewares disponibles pour Express
 
 

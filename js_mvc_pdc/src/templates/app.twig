@@ -4,6 +4,7 @@
 
 {% from "activites/connexion.twig" import connexion %}
 {% from "activites/enregistrement.twig" import enregistrement %}
+{% from "activites/erreur.twig" import erreur %}
 {% from "activites/fil.twig" import fil %}
 {% from "activites/fil_publier.twig" import fil_publier %}
 
@@ -20,5 +21,7 @@
     {{ fil(proprietes) }}
   {% elseif proprietes.vue == "/fil/publier" %}
     {{ fil_publier(proprietes) }}
+  {% elseif proprietes.vue == "/erreur" %}
+    {{ erreur() }}
   {% endif %}
 {% endblock %}

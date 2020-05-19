@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "experimentalDecorators": true
   },
   "include": [
-    "src"
-  ]
+    "src/**/*"
+  ],
+  "allowjs": true
 }

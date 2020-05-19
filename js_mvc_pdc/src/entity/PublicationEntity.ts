@@ -1,7 +1,7 @@
 import { Column, Entity, OneToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 
-import ThemePublication from 'entity/ThemePublication'
-import Utilisateur from 'entity/Utilisateur'
+import ThemePublication from 'entity/ThemePublicationEntity'
+import Utilisateur from 'entity/UtilisateurEntity'
 
 @Entity()
 class Publication {
