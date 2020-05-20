@@ -1,7 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+
+import PublicationEntity from 'entity/PublicationEntity'
 
 @Entity()
-class Utilisateur {
+export default class UtilisateurEntity {
   
   @PrimaryGeneratedColumn()
   id_utilisateur: number
@@ -14,6 +16,7 @@ class Utilisateur {
 
   @Column()
   jeton: string
-}
 
-export default Utilisateur
+  @OneToMany(type => PublicationEntity, publication => publication.utilisateur)
+  publications: PublicationEntity[]
+}

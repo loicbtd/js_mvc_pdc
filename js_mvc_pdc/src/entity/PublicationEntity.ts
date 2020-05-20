@@ -1,17 +1,18 @@
-import { Column, Entity, OneToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 
-import ThemePublication from 'entity/ThemePublicationEntity'
-import Utilisateur from 'entity/UtilisateurEntity'
+import ThemePublicationEntity from 'entity/ThemePublicationEntity'
+import UtilisateurEntity from 'entity/UtilisateurEntity'
 
 @Entity()
-class Publication {
+export default class PublicationEntity {
   @PrimaryGeneratedColumn()
   id_publication: number
 
-  @OneToMany(type => ThemePublication, theme => theme.)
-  theme: ThemePublication[]
+  @ManyToMany(type => ThemePublicationEntity)
+  @JoinTable()
+  themes: ThemePublicationEntity[]
 
-  @Column('varchar')
+  @Column()
   titre: string
 
   @Column('text')
@@ -23,8 +24,6 @@ class Publication {
   @Column('int')
   nombre_vues: string
 
-  @OneToOne(type => Utilisateur)
-  utilisateur: Utilisateur
+  @ManyToOne(type => UtilisateurEntity, utilisateur => utilisateur.publications)
+  utilisateur: UtilisateurEntity
 }
-
-export default Publication

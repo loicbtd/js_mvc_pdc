@@ -1,6 +1,10 @@
 # Devlog - Historique du travail effectué
 
 
+## 20/05/2020
+
+* 
+
 ## 19/05/2020
 
 * Suite de la restructuration du projet 

@@ -1,4 +1,4 @@
-import UtilisateurEntity from 'entity/UtilisateurEntity'
+import UtilisateurEntity from 'entity/UtilisateurEntity.ts'
 
 class UtilisateurRepository {
   
