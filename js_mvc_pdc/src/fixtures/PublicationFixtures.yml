@@ -1,0 +1,11 @@
+entity: Publication
+items:
+  publication1:
+    themes:
+      - '@theme_publication1'
+      - '@theme_publication2'
+    titre: 'titre1'
+    contenu: 'contenu1'
+    date: '2020-05-21'
+    nombre_vues: 5
+    utilisateur: '@utilisateur1'

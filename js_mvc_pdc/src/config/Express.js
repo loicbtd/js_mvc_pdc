@@ -24,6 +24,17 @@ app.use(expressSession({
   saveUninitialized: false
 }))
 
+passport.use(new Strategy(
+  (username, password, done) => {
+    if (username === 'demo' && password === 'password') {
+      done(null, { username: username })
+    }
+    else {
+      return done(null, false)
+    }
+  }
+))
+
 app.use(passport.initialize())
 
 app.use(passport.session())

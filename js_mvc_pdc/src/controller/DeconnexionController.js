@@ -1,6 +1,6 @@
-export default class DeconnexionController {
-  controler(requete, reponse) {
-    requete.session = null
-    reponse.redirect('/')
-  }
+function controler(requete, reponse) {
+  requete.session = null
+  reponse.redirect('/')
 }
+
+export { controler }

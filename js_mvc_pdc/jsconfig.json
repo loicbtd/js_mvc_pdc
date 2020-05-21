@@ -1,8 +1,15 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
+    "lib": [
+      "es5",
+      "es6"
+    ],
+    "target": "es5",
     "module": "commonjs",
-    "target": "es6"
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "include": [
     "src/**/*"

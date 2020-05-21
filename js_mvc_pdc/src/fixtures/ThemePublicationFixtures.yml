@@ -1,0 +1,6 @@
+entity: ThemePublication
+items:
+  theme_publication1:
+    titre: 'theme_publication1'
+  theme_publication2:
+    titre: 'theme_publication2'

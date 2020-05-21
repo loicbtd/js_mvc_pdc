@@ -1,10 +1,13 @@
-import { createConnection } from 'typeorm'
+import { getConnectionManager } from 'typeorm'
 
-createConnection({
-    type: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'demo',
-    password: 'demo',
-    database: 'demo'
+const connectionManager = getConnectionManager()
+const ConnexionBdd = connectionManager.create({
+  type: 'mysql',
+  host: 'localhost',
+  port: 3306,
+  username: 'demo',
+  password: 'demo',
+  database: 'demo',
 })
+
+export default ConnexionBdd

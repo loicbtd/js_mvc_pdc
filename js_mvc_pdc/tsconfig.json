@@ -1,7 +1,25 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "experimentalDecorators": true
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "strictPropertyInitialization": false,
+    "declaration": true,
+    "lib": [
+      "es2017"
+    ],
+    "types": [
+      "node"
+    ],
+    "pretty": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types"
+    ]
   },
   "include": [
     "src/**/*"
