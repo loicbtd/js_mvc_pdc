@@ -1,9 +1,15 @@
 # Devlog - Historique du travail effectué
 
+## 21/05/2020
+
+* Ajout de fixtures à Typeorm
+
 
 ## 20/05/2020
 
-* 
+* Formations typeorm
+* Debug de l'application suite aux problèmes de compatibilié avec typeorm
+* Ajout de Passport.js et d'une méthode d'authenfication
 
 ## 19/05/2020
 
