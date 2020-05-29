@@ -1,4 +1,4 @@
-import {controler, naviguer} from 'controller/ConnexionController'
+import { controler, naviguer } from 'controller/ConnexionController'
 
 import { Router } from 'express'
 

@@ -27,7 +27,7 @@ app.use(expressSession({
 passport.use(new Strategy(
   (username, password, done) => {
     if (username === 'demo' && password === 'password') {
-      done(null, { username: username })
+      return done(null, { username: username })
     }
     else {
       return done(null, false)

@@ -13,7 +13,7 @@ function controler(requete, reponse) {
     pseudonyme: requete.body.pseudonyme,
     mot_de_passe: requete.body.mot_de_passe,
   }
-  let erreurs = {}    
+  let erreurs = {}
 
   if (!saisies.pseudonyme) {
     erreurs.pseudonyme = {

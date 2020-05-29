@@ -1,5 +1,33 @@
 # Devlog - Historique du travail effectué
 
+## 28/05/2020
+
+* Suite du rapport technique
+* Suite du diaporama
+
+
+## 27/05/2020
+
+* Début du rapport technique
+
+
+## 26/05/2020
+
+* Fin du rapport
+* Début du diaporama de présentation
+
+
+## 25/05/2020
+
+* Réalisation d'essais de transpilation Babel avec TypeORM
+* Rédaction du début du rapport
+
+
+## 22/05/2020
+
+* Lecture de la documentation de Babel afin de résoudre le problème d'importation
+
+
 ## 21/05/2020
 
 * Ajout de fixtures à Typeorm
@@ -10,6 +38,7 @@
 * Formations typeorm
 * Debug de l'application suite aux problèmes de compatibilié avec typeorm
 * Ajout de Passport.js et d'une méthode d'authenfication
+
 
 ## 19/05/2020
 
