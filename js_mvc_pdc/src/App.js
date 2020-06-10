@@ -93,10 +93,10 @@ class App {
 
 export default App
 
-if (
-  process.env.NODE_ENV === 'production' ||
-  process.env.NODE_ENV === 'development'
-) {
-  const application = new App()
-  application.demarrer(process.env.PORT)
-}
+// if (
+//   process.env.NODE_ENV === 'production' ||
+//   process.env.NODE_ENV === 'development'
+// ) {
+// }
+const application = new App()
+application.demarrer(4000)
