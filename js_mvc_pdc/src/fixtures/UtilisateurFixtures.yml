@@ -1,0 +1,11 @@
+entity: Utilisateur
+items:
+  utilisateur1:
+    pseudonyme: 'demo'
+    mot_de_passe: 'demo'
+  utilisateur2:
+    pseudonyme: 'demo2'
+    mot_de_passe: 'demo2'
+  utilisateur3:
+    pseudonyme: 'demo3'
+    mot_de_passe: 'demo3'
